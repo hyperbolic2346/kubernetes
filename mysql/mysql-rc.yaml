@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: mysql-v0
+  namespace: kube-system
+  labels:
+    k8s-app: mysql
+    version: v0
+    kubernetes.io/cluster-service: "true"
+spec:
+  replicas: 1
+  selector:
+    k8s-app: mysql
+    version: v0
+  template:
+    metadata:
+      labels:
+        k8s-app: mysql
+        version: v0
+        kubernetes.io/cluster-service: "true"
+    spec: 
+      containers: 
+      - name: mysql
+        image: mysql
+        resources:
+          limits:
+            cpu: 0.5
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: ARZLdnvM5Bdf8pWj
+        ports: 
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: mysql
