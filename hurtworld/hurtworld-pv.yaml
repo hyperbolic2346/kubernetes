@@ -1,12 +1,12 @@
   apiVersion: v1
   kind: PersistentVolume
   metadata:
-    name: docker-configs
+    name: hurtworld
   spec:
     capacity:
-      storage: 500Gi
+      storage: 100Gi
     accessModes:
-      - ReadWriteMany
+      - ReadWriteOnce
     nfs:
-      path: /mnt/fileserv/docker_configs
+      path: /mnt/fileserv/kubernetes/hurtworld
       server: 10.0.1.14

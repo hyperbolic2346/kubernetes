@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: motion
+  labels:
+    k8s-app: motion
+    kubernetes.io/name: "motion"
+spec:
+  selector:
+    k8s-app: motion
+  ports:
+  - name: motion
+    port: 9081
+  externalIPs: ["10.0.1.19"]

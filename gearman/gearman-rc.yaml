@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: gearman-v0
+  labels:
+    k8s-app: gearman
+    version: v0
+spec:
+  replicas: 3
+  selector:
+    k8s-app: gearman
+    version: v0
+  template:
+    metadata:
+      labels:
+        k8s-app: gearman
+        version: v0
+    spec: 
+      containers: 
+      - name: gearman
+        image: localhost:5000/gearman-client
+        resources:
+          limits:
+            cpu: 0.5
+        volumeMounts:
+        - name: gearman-storage
+          mountPath: /usr/local/bin
+        - name: security-camera-storage
+          mountPath: /fileserv/security_camera
+      volumes:
+      - name: gearman-storage
+        persistentVolumeClaim:
+          claimName: gearman
+      - name: security-camera-storage
+        persistentVolumeClaim:
+          claimName: security-camera

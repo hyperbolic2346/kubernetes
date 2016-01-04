@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: motion-v0
+  labels:
+    k8s-app: motion
+    version: v0
+spec:
+  replicas: 1
+  selector:
+    k8s-app: motion
+    version: v0
+  template:
+    metadata:
+      labels:
+        k8s-app: motion
+        version: v0
+    spec:
+      containers:
+      - name: motion
+        image: localhost:5000/motion
+        resources:
+          limits:
+            cpu: 1
+            memory: 2Gi
+        volumeMounts:
+        - name: security-store
+          mountPath: /fileserv/security_camera
+        ports:
+        - containerPort: 9081
+          name: motion
+      volumes:
+      - name: security-store
+        persistentVolumeClaim:
+          claimName: security-camera

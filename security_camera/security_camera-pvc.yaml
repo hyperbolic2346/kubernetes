@@ -1,10 +1,10 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: docker-configs
+  name: security-camera
 spec:
   accessModes:
     - ReadWriteMany
   resources:
     requests:
-      storage: 500Gi
+      storage: 1Ti
