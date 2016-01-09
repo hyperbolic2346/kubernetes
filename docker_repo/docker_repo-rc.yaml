@@ -34,8 +34,6 @@ spec:
         volumeMounts:
         - name: image-store
           mountPath: /var/lib/registry
-        - name: docker-configs
-          mountPath: /docker_configs
         ports:
         - containerPort: 5000
           name: registry
@@ -44,6 +42,3 @@ spec:
       - name: image-store
         persistentVolumeClaim:
           claimName: docker-repo
-      - name: docker-configs
-        persistentVolumeClaim:
-          claimName: docker-configs
