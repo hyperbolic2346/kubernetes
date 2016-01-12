@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: hlstatsx-v0
+  labels:
+    app: hlstatsx
+    version: v0
+spec:
+  replicas: 1
+  selector:
+    app: hlstatsx
+    version: v0
+  template:
+    metadata:
+      labels:
+        app: hlstatsx
+        version: v0
+    spec: 
+      containers: 
+      - name: hlstatsx
+        image: localhost:5000/hlstatsx
+        resources:
+          limits:
+            cpu: 0.5
+        ports: 
+        - containerPort: 80
+          name: hlstatsx
+        - containerPort: 443
+          name: hlstatsx-ssl

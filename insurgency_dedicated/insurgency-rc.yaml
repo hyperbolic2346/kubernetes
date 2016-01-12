@@ -17,6 +17,15 @@ spec:
         version: v0
     spec:
       containers:
+      - name: hlstatsx-scr
+        image: localhost:5000/hlstatsx_scripts
+        resources:
+          limits:
+            cpu: 0.5
+        ports:
+        - containerPort: 27500
+          name: hlstatsx-scr
+          protocol: UDP
       - name: insurgency
         image: localhost:5000/insurgency_dedicated
         resources:
@@ -28,15 +37,15 @@ spec:
           mountPath: /srv/insurgency_data
         ports:
         - containerPort: 27015
-          name: insurgency-main
+          name: insurg-main
         - containerPort: 27015
-          name: insurgency-main-udp
+          name: insurg-main-udp
           protocol: UDP
         - containerPort: 27005
-          name: insurgency-05
+          name: insurg-05
           protocol: UDP
         - containerPort: 27020
-          name: insurgency-20
+          name: insurg-20
           protocol: UDP
       volumes:
       - name: insurgency-store

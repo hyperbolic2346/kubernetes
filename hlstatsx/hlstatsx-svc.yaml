@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hlstatsx
+  labels:
+    app: hlstatsx
+    kubernetes.io/name: "hlstatsx"
+spec:
+  selector:
+    app: hlstatsx
+  ports:
+  - name: hlstatsx
+    port: 80
