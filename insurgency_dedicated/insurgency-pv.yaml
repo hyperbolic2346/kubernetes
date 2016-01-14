@@ -1,0 +1,12 @@
+  apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    name: insurgency
+  spec:
+    capacity:
+      storage: 200Gi
+    accessModes:
+      - ReadWriteOnce
+    nfs:
+      path: /mnt/fileserv/kubernetes/insurgency
+      server: 10.0.1.14

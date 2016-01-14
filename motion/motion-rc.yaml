@@ -19,6 +19,9 @@ spec:
       containers:
       - name: motion
         image: localhost:5000/motion
+        livenessProbe:
+          tcpSocket:
+            port: 9081
         resources:
           limits:
             cpu: 1

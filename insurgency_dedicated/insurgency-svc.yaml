@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: insurgency
+  labels:
+    app: insurgency
+    kubernetes.io/name: "insurgency"
+spec:
+  selector:
+    app: insurgency
+  ports:
+  - name: insurg-main
+    port: 27015
+  - name: insurg-main-udp
+    port: 27015
+    protocol: UDP
+  - name: insurg-05
+    port: 27005
+    protocol: UDP
+  - name: insurg-20
+    port: 27020
+    protocol: UDP
+  externalIPs: ["10.0.1.19", "10.0.1.20", "10.0.1.21", "10.0.1.22", "10.0.1.23"]
