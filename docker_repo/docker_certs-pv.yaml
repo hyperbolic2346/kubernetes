@@ -1,0 +1,13 @@
+  apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    name: docker-certs
+    namespace: kube-system
+  spec:
+    capacity:
+      storage: 1Mi
+    accessModes:
+      - ReadOnlyMany
+    nfs:
+      path: /mnt/fileserv/kubernetes/docker_certs
+      server: 10.0.1.14
