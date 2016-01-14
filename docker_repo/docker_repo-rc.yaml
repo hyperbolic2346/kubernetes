@@ -27,15 +27,17 @@ spec:
             cpu: 100m
             memory: 100Mi
         env:
-        - name: REGISTRY_HTTP_ADDR
-          value: :5000
+        - name: REGISTRY_HTTP_TLS_KEY
+          value: /certs/docker-key.pem
+        - name: REGISTRY_HTTP_TLS_CERTIFICATE
+          value: /certs/docker.pem
         - name: REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY
           value: /var/lib/registry
         volumeMounts:
         - name: image-store
           mountPath: /var/lib/registry
-        - name: docker-configs
-          mountPath: /docker_configs
+        - name: docker-certs
+          mountPath: /certs
         ports:
         - containerPort: 5000
           name: registry
@@ -45,6 +47,6 @@ spec:
       - name: image-store
         persistentVolumeClaim:
           claimName: docker-repo
-      - name: docker-configs
+      - name: docker-certs
         persistentVolumeClaim:
-          claimName: docker-configs
+          claimName: docker-certs
