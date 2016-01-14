@@ -35,6 +35,7 @@ spec:
         - name: localtime
           mountPath: /etc/localtime
           readOnly: true
+        imagePullPolicy: Always
       volumes:
       - name: crashplan-persistent-storage
         persistentVolumeClaim:

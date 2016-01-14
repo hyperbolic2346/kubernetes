@@ -40,6 +40,7 @@ spec:
         - containerPort: 5000
           name: registry
           protocol: TCP
+        imagePullPolicy: Always
       volumes:
       - name: image-store
         persistentVolumeClaim:

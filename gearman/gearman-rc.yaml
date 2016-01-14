@@ -18,7 +18,7 @@ spec:
     spec: 
       containers: 
       - name: gearman
-        image: localhost:5000/gearman-client
+        image: docker-repo.kube-system.svc.cluster.local:5000/gearman-client
         resources:
           limits:
             cpu: 0.5
@@ -27,6 +27,7 @@ spec:
           mountPath: /usr/local/bin
         - name: security-camera-storage
           mountPath: /fileserv/security_camera
+        imagePullPolicy: Always
       volumes:
       - name: gearman-storage
         persistentVolumeClaim:

@@ -18,7 +18,7 @@ spec:
     spec: 
       containers: 
       - name: hlstatsx
-        image: localhost:5000/hlstatsx
+        image: docker-repo.kube-system.svc.cluster.local:5000/hlstatsx
         resources:
           limits:
             cpu: 0.5
@@ -27,3 +27,4 @@ spec:
           name: hlstatsx
         - containerPort: 443
           name: hlstatsx-ssl
+        imagePullPolicy: Always
