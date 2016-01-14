@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: hlstatsx-scr
-        image: docker-repo.kube-system.svc.cluster.local:5000/hlstatsx_scripts
+        image: 10.0.1.19:5000/hlstatsx_scripts
         resources:
           limits:
             cpu: 0.5
@@ -28,7 +28,7 @@ spec:
           protocol: UDP
         imagePullPolicy: Always
       - name: insurgency
-        image: docker-repo.kube-system.svc.cluster.local:5000/insurgency_dedicated
+        image: 10.0.1.19:5000/insurgency_dedicated
         resources:
           limits:
             cpu: 3
