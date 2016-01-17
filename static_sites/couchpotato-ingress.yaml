@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: couchpotato
+spec:
+  rules:
+  - host: couchpotato.burntsheep.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: couchpotato
+          servicePort: 80
