@@ -21,7 +21,7 @@ spec:
         image: 10.0.1.19:5000/hurtworld_dedicated
         resources:
           limits:
-            cpu: 3
+            cpu: 1
             memory: 2Gi
         volumeMounts:
         - name: hurtworld-store
