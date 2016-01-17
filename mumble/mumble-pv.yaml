@@ -1,0 +1,12 @@
+  apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    name: mumble
+  spec:
+    capacity:
+      storage: 10Mi
+    accessModes:
+      - ReadWriteOnce
+    nfs:
+      path: /mnt/fileserv/kubernetes/mumble
+      server: 10.0.1.14

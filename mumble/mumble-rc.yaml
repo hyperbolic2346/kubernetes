@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: mumble-v0
+  labels:
+    app: mumble
+    version: v0
+spec:
+  replicas: 1
+  selector:
+    app: mumble
+    version: v0
+  template:
+    metadata:
+      labels:
+        app: mumble
+        version: v0
+    spec:
+      containers:
+      - name: mumble
+        image: coppit/mumble-server
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 0.5
+            memory: 500Mi
+        volumeMounts:
+        - name: mumble
+          mountPath: /data
+        ports:
+        - containerPort: 64738
+          name: mumble
+        - containerPort: 64738
+          name: mudp
+          protocol: UDP
+      volumes:
+      - name: mumble
+        persistentVolumeClaim:
+          claimName: mumble

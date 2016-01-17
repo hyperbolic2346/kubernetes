@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mumble
+  labels:
+    app: mumble
+    kubernetes.io/name: "mumble"
+spec:
+  selector:
+    app: mumble
+  ports:
+  - name: mumble
+    port: 64738
+  - name: mumble-udp
+    port: 64738
+    protocol: UDP
+  externalIPs: ["10.0.1.19"]

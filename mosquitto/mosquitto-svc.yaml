@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mosquitto
+  labels:
+    app: mosquitto
+    kubernetes.io/name: "mosquitto"
+spec:
+  selector:
+    app: mosquitto
+  ports:
+  - name: mosquitto
+    port: 9003
+  externalIPs: ["10.0.1.19"]

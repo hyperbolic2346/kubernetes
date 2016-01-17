@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: mosquitto-v0
+  labels:
+    app: mosquitto
+    version: v0
+spec:
+  replicas: 1
+  selector:
+    app: mosquitto
+    version: v0
+  template:
+    metadata:
+      labels:
+        app: mosquitto
+        version: v0
+    spec:
+      containers:
+      - name: mosquitto
+        image: 10.0.1.19:5000/mosquitto
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 0.5
+            memory: 500Mi
+        volumeMounts:
+        - name: mosquitto
+          mountPath: /etc/mosquitto
+        ports:
+        - containerPort: 9003
+          name: mosquitto
+      volumes:
+      - name: mosquitto
+        persistentVolumeClaim:
+          claimName: mosquitto
