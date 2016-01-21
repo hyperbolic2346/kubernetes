@@ -26,7 +26,7 @@ spec:
         - name: gate
           mountPath: /var/www
         - name: security-camera
-          mountPath: /var/www/docs/media
+          mountPath: /var/www/html/media
         ports:
         - containerPort: 80
           name: gate
