@@ -1,0 +1,17 @@
+{
+    "kind": "Endpoints",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "kubedash"
+    },
+    "subsets": [
+        {
+            "addresses": [
+                { "ip": "10.2.85.8" }
+            ],
+            "ports": [
+                { "port": 8289 }
+            ]
+        }
+    ]
+}

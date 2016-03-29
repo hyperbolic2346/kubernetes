@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: kubedash
+spec:
+  rules:
+  - host: kubedash.burntsheep.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: kubedash
+          servicePort: 80
+      - path: /.well-known
+        backend:
+          serviceName: letsencrypt
+          servicePort: 80
