@@ -10,5 +10,5 @@ spec:
     app: mosquitto
   ports:
   - name: mosquitto
-    port: 9003
+    port: 8883
   externalIPs: ["10.0.1.19"]

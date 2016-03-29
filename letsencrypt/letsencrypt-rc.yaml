@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: letsencrypt-v0
+  labels:
+    app: letsencrypt
+    version: v0
+spec:
+  replicas: 1
+  selector:
+    app: letsencrypt
+    version: v0
+  template:
+    metadata:
+      labels:
+        app: letsencrypt
+        version: v0
+    spec:
+      containers:
+      - name: letsencrypt
+        image: 10.0.1.19:5000/letsencrypt
+        resources:
+          limits:
+            cpu: 0.1
+        ports:
+        - containerPort: 80
+          name: letsencrypt
+        imagePullPolicy: Always
+        env:
+        - name: EMAIL
+          value: knobby@burntsheep.com
+        - name: DOMAINS
+          value: "gate.burntsheep.com mosquitto.burntsheep.com gateapi.burntsheep.com stats.burntsheep.com couchpotato.burntsheep.com sonaar.burntsheep.com sabnzbd.burntsheep.com fileserv.burntsheep.com router.burntsheep.com grafana.burntsheep.com games.burntsheep.com openhab.burntsheep.com jenkins.burntsheep.com kubedash.burntsheep.com phpmyadmin.burntsheep.com baby.burntsheep.com"
+        - name: RC_NAMES
+          value: nginx-ingress
+        - name: SECRET_NAME
+          value: nginx-certs

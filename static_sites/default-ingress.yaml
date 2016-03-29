@@ -11,3 +11,7 @@ spec:
         backend:
           serviceName: default-http-backend
           servicePort: 80
+      - path: /.well-known
+        backend:
+          serviceName: letsencrypt
+          servicePort: 80

@@ -1,15 +1,15 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: hlstatsx
+  name: router
 spec:
   rules:
-  - host: stats.burntsheep.com
+  - host: router.burntsheep.com
     http:
       paths:
       - path: /
         backend:
-          serviceName: hlstatsx
+          serviceName: router
           servicePort: 80
       - path: /.well-known
         backend:

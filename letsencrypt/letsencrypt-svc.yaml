@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: letsencrypt
+  labels:
+    app: letsencrypt
+    kubernetes.io/name: "letsencrypt"
+spec:
+  selector:
+    app: letsencrypt
+  ports:
+  - name: letsencrypt
+    port: 80

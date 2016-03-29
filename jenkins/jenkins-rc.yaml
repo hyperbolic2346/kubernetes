@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: jenkins-v0
+  labels:
+    app: jenkins
+    version: v0
+spec:
+  replicas: 1
+  selector:
+    app: jenkins
+    version: v0
+  template:
+    metadata:
+      labels:
+        app: jenkins
+        version: v0
+    spec:
+      containers:
+      - name: jenkins
+        image: jenkins
+        resources:
+          limits:
+            cpu: 1
+        volumeMounts:
+        - name: jenkins
+          mountPath: /var/jenkins_home
+        ports:
+        - containerPort: 8080
+          name: jenkins
+        - containerPort: 50000
+          name: jnlp
+        imagePullPolicy: Always
+      volumes:
+      - name: jenkins
+        persistentVolumeClaim:
+          claimName: jenkins

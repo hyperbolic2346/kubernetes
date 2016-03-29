@@ -11,3 +11,7 @@ spec:
         backend:
           serviceName: sonaar
           servicePort: 80
+      - path: /.well-known
+        backend:
+          serviceName: letsencrypt
+          servicePort: 80

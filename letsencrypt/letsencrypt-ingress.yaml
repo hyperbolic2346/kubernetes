@@ -1,16 +1,12 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: hlstatsx
+  name: letsencrypt
 spec:
   rules:
-  - host: stats.burntsheep.com
+  - host: gate.burntsheep.com
     http:
       paths:
-      - path: /
-        backend:
-          serviceName: hlstatsx
-          servicePort: 80
       - path: /.well-known
         backend:
           serviceName: letsencrypt

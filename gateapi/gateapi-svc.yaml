@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateapi
+  labels:
+    app: gateapi
+    kubernetes.io/name: "gateapi"
+spec:
+  selector:
+    app: gateapi
+  ports:
+  - name: gateapi
+    port: 80
+    targetPort: 8080

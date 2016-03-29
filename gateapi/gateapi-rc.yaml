@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: gateapi-v0
+  labels:
+    app: gateapi
+    version: v0
+spec:
+  replicas: 1
+  selector:
+    app: gateapi
+    version: v0
+  template:
+    metadata:
+      labels:
+        app: gateapi
+        version: v0
+    spec:
+      containers:
+      - name: gateapi
+        image: 10.0.1.19:5000/gateapi
+        resources:
+          limits:
+            cpu: 0.5
+        volumeMounts:
+        - name: security-camera
+          mountPath: /security_camera
+        ports:
+        - containerPort: 8080
+          name: gateapi
+        imagePullPolicy: Always
+      volumes:
+      - name: security-camera
+        persistentVolumeClaim:
+          claimName: security-camera

@@ -28,7 +28,7 @@ spec:
         - name: mosquitto
           mountPath: /etc/mosquitto
         ports:
-        - containerPort: 9003
+        - containerPort: 8883
           name: mosquitto
       volumes:
       - name: mosquitto

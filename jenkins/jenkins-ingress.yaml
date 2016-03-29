@@ -1,15 +1,15 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: hlstatsx
+  name: jenkins
 spec:
   rules:
-  - host: stats.burntsheep.com
+  - host: jenkins.burntsheep.com
     http:
       paths:
       - path: /
         backend:
-          serviceName: hlstatsx
+          serviceName: jenkins
           servicePort: 80
       - path: /.well-known
         backend:

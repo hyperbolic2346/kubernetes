@@ -53,7 +53,7 @@ spec:
         # create a configuration with the content of dhparam.pem in the field sslDHParam.
         args:
         - /nginx-third-party-lb
-        - --default-backend-service=10.3.0.235
+        - --default-backend-service=default/default-http-backend
       volumes:
       - name: nginx-certs
         secret:
