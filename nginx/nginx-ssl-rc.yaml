@@ -14,7 +14,7 @@ spec:
         app: nginx-ingress
     spec:
       containers:
-      - image: aledbf/nginx-third-party:0.1
+      - image: aledbf/nginx-third-party:0.2
         imagePullPolicy: Always
         name: nginx
 #        livenessProbe:

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bf1942
+  labels:
+    app: bf1942
+    kubernetes.io/name: "bf1942"
+spec:
+  selector:
+    app: bf1942
+  ports:
+  - name: bf1942-main
+    port: 14567
+    protocol: UDP
+  externalIPs: ["10.0.1.19", "10.0.1.20", "10.0.1.21", "10.0.1.22", "10.0.1.23", "10.0.1.24"]

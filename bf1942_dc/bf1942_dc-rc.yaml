@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: bf1942-dc-v0
+  labels:
+    app: bf1942-dc
+    version: v0
+spec:
+  replicas: 1
+  selector:
+    app: bf1942-dc
+    version: v0
+  template:
+    metadata:
+      labels:
+        app: bf1942-dc
+        version: v0
+    spec:
+      containers:
+      - name: bf1942-dc
+        image: 10.0.1.19:5000/bf1942_dc
+        resources:
+          limits:
+            cpu: 2
+            memory: 2Gi
+        volumeMounts:
+        - name: bf1942-dc-store
+          mountPath: /srv/bf1942/mods/bf1942/settings
+        ports:
+        - containerPort: 14567
+          protocol: UDP
+          name: bf1942-dc-main
+        imagePullPolicy: Always
+      volumes:
+      - name: bf1942-dc-store
+        persistentVolumeClaim:
+          claimName: bf1942-dc

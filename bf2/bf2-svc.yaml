@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bf2
+  labels:
+    app: bf2
+    kubernetes.io/name: "bf2"
+spec:
+  selector:
+    app: bf2
+  ports:
+  - name: bf2-main
+    port: 16567
+    protocol: UDP
+  externalIPs: ["10.0.1.19", "10.0.1.20", "10.0.1.21", "10.0.1.22", "10.0.1.23", "10.0.1.24"]

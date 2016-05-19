@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: bf2-v0
+  labels:
+    app: bf2
+    version: v0
+spec:
+  replicas: 1
+  selector:
+    app: bf2
+    version: v0
+  template:
+    metadata:
+      labels:
+        app: bf2
+        version: v0
+    spec:
+      containers:
+      - name: bf2
+        image: 10.0.1.19:5000/bf2
+        resources:
+          limits:
+            cpu: 2
+            memory: 2Gi
+        volumeMounts:
+        - name: bf2-store
+          mountPath: /srv/bf2/mods/bf2/settings
+        ports:
+        - containerPort: 14567
+          protocol: UDP
+          name: bf2-main
+        imagePullPolicy: Always
+      volumes:
+      - name: bf2-store
+        persistentVolumeClaim:
+          claimName: bf2
