@@ -3,6 +3,10 @@ kind: Ingress
 metadata:
   name: openhab
 spec:
+  tls:
+  - hosts:
+    - openhab.burntsheep.com
+    secretName: nginx-certs
   rules:
   - host: openhab.burntsheep.com
     http:

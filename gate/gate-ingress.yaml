@@ -2,7 +2,12 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: gate
+  namespace: default
 spec:
+  tls:
+  - hosts:
+    - gate.burntsheep.com
+    secretName: nginx-certs
   rules:
   - host: gate.burntsheep.com
     http:

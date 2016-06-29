@@ -3,6 +3,10 @@ kind: Ingress
 metadata:
   name: baby
 spec:
+  tls:
+  - hosts:
+    - baby.burntsheep.com
+    secretName: nginx-certs
   rules:
   - host: baby.burntsheep.com
     http:

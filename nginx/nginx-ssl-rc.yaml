@@ -13,17 +13,18 @@ spec:
       labels:
         app: nginx-ingress
     spec:
+      terminationGracePeriodSeconds: 60
       containers:
-      - image: aledbf/nginx-third-party:0.2
+      - image: gcr.io/google_containers/nginx-ingress-controller:0.7
         imagePullPolicy: Always
         name: nginx
-#        livenessProbe:
-#          httpGet:
-#            path: /healthz
-#            port: 10249
-#            scheme: HTTP
-#          initialDelaySeconds: 30
-#          timeoutSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 10249
+            scheme: HTTP
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
         env:
           - name: POD_NAME
             valueFrom:
@@ -33,10 +34,6 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
-          - name: POD_IP
-            valueFrom:
-              fieldRef:
-                fieldPath: status.podIP
         ports:
         - containerPort: 80
           hostPort: 80
@@ -44,19 +41,8 @@ spec:
           hostPort: 4444
         - containerPort: 8080
           hostPort: 9000
-        # the mountpoints for the SSL secrets must be a /etc/nginx-ssl subdirectory
-        volumeMounts:
-        - mountPath: /etc/nginx-ssl/nginx-certs
-          name: nginx-certs
-        # to configure ssl_dhparam http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_dhparam
-        # use the dhparam.sh file to generate and mount a secret that containing the key dhparam.pem or
-        # create a configuration with the content of dhparam.pem in the field sslDHParam.
         args:
-        - /nginx-third-party-lb
+        - /nginx-ingress-controller
         - --default-backend-service=default/default-http-backend
-      volumes:
-      - name: nginx-certs
-        secret:
-          secretName: nginx-certs
       nodeSelector:
         nginx: "true"

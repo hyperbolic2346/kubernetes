@@ -3,6 +3,10 @@ kind: Ingress
 metadata:
   name: fileserv
 spec:
+  tls:
+  - hosts:
+    - fileserv.burntsheep.com
+    secretName: nginx-certs
   rules:
   - host: fileserv.burntsheep.com
     http:

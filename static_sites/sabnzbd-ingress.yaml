@@ -3,6 +3,10 @@ kind: Ingress
 metadata:
   name: sabnzbd
 spec:
+  tls:
+  - hosts:
+    - sabnzbd.burntsheep.com
+    secretName: nginx-certs
   rules:
   - host: sabnzbd.burntsheep.com
     http:

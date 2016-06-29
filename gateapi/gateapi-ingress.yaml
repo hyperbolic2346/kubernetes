@@ -3,6 +3,10 @@ kind: Ingress
 metadata:
   name: gateapi
 spec:
+  tls:
+  - hosts:
+    - gateapi.burntsheep.com
+    secretName: nginx-certs
   rules:
   - host: gateapi.burntsheep.com
     http:

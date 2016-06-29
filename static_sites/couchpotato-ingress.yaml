@@ -3,6 +3,10 @@ kind: Ingress
 metadata:
   name: couchpotato
 spec:
+  tls:
+  - hosts:
+    - couchpotato.burntsheep.com
+    secretName: nginx-certs
   rules:
   - host: couchpotato.burntsheep.com
     http:

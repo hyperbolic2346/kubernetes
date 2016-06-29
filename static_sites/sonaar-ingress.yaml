@@ -3,6 +3,10 @@ kind: Ingress
 metadata:
   name: sonaar
 spec:
+  tls:
+  - hosts:
+    - sonaar.burntsheep.com
+    secretName: nginx-certs
   rules:
   - host: sonaar.burntsheep.com
     http:
