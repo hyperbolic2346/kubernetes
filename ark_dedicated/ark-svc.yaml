@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ark
+  labels:
+    app: ark
+    kubernetes.io/name: "ark"
+spec:
+  selector:
+    app: ark
+  ports:
+  - name: ark-rcon
+    port: 32330
+  - name: ark-main-udp
+    port: 27115
+    protocol: UDP
+  - name: ark-game-data
+    port: 7778
+    protocol: UDP
+  - name: ark-game-data-tcp
+    port: 7778
+  externalIPs: ["10.0.1.19", "10.0.1.20", "10.0.1.21", "10.0.1.22", "10.0.1.23", "10.0.1.24"]

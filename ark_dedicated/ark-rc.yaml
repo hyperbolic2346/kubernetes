@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: ark-v0
+  labels:
+    app: ark
+    version: v0
+spec:
+  replicas: 1
+  selector:
+    app: ark
+    version: v0
+  template:
+    metadata:
+      labels:
+        app: ark
+        version: v0
+    spec:
+      containers:
+      - name: ark
+        image: 10.0.1.19:5000/ark_dedicated
+        resources:
+          limits:
+            cpu: 3
+            memory: 16Gi
+        volumeMounts:
+        - name: ark-store
+          mountPath: /ark
+        ports:
+        - containerPort: 32330
+          name: ark-rcon
+        - containerPort: 7778
+          name: ark-game-data
+          protocol: UDP
+        - containerPort: 7778
+          name: ark-g-d-tcp
+        - containerPort: 27115
+          name: ark-main-udp
+          protocol: UDP
+        imagePullPolicy: Always
+        env:
+        - name: SERVERPORT
+          value: "27115"
+      volumes:
+      - name: ark-store
+        persistentVolumeClaim:
+          claimName: ark
