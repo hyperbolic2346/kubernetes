@@ -2,11 +2,13 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: sonaar
+  annotations:
+    kubernetes.io/tls-acme: "true"
 spec:
   tls:
   - hosts:
     - sonaar.burntsheep.com
-    secretName: nginx-certs
+    secretName: sonaar-cert
   rules:
   - host: sonaar.burntsheep.com
     http:
@@ -14,8 +16,4 @@ spec:
       - path: /
         backend:
           serviceName: sonaar
-          servicePort: 80
-      - path: /.well-known
-        backend:
-          serviceName: letsencrypt
           servicePort: 80

@@ -1,19 +1,19 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: couchpotato
+  name: netdata
   annotations:
     kubernetes.io/tls-acme: "true"
 spec:
   tls:
   - hosts:
-    - couchpotato.burntsheep.com
-    secretName: couchpotato-cert
+    - netdata.burntsheep.com
+    secretName: netdata-cert
   rules:
-  - host: couchpotato.burntsheep.com
+  - host: netdata.burntsheep.com
     http:
       paths:
       - path: /
         backend:
-          serviceName: couchpotato
+          serviceName: netdata
           servicePort: 80

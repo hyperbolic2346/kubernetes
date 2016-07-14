@@ -2,11 +2,13 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: openhab
+  annotations:
+    kubernetes.io/tls-acme: "true"
 spec:
   tls:
   - hosts:
     - openhab.burntsheep.com
-    secretName: nginx-certs
+    secretName: openhab-cert
   rules:
   - host: openhab.burntsheep.com
     http:

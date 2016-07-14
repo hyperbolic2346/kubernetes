@@ -1,19 +1,15 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: couchpotato
+  name: grafana
   annotations:
     kubernetes.io/tls-acme: "true"
 spec:
-  tls:
-  - hosts:
-    - couchpotato.burntsheep.com
-    secretName: couchpotato-cert
   rules:
-  - host: couchpotato.burntsheep.com
+  - host: grafana.burntsheep.com
     http:
       paths:
       - path: /
         backend:
-          serviceName: couchpotato
+          serviceName: default-http-backend
           servicePort: 80

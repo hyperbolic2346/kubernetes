@@ -1,19 +1,18 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: 0default
-  annotations:
-    kubernetes.io/tls-acme: "true"
+  name: phpmyadmin
 spec:
-  tls:
-  - hosts:
-    - a.burntsheep.com
-    secretName: a-cert
   rules:
-  - host: a.burntsheep.com
+  - host: phpmyadmin.burntsheep.com
     http:
       paths:
       - path: /
         backend:
           serviceName: default-http-backend
           servicePort: 80
+      - path: /.well-known
+        backend:
+          serviceName: letsencrypt
+          servicePort: 80
+

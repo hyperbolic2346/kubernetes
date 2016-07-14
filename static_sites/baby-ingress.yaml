@@ -2,11 +2,13 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: baby
+  annotations:
+    kubernetes.io/tls-acme: "true"
 spec:
   tls:
   - hosts:
     - baby.burntsheep.com
-    secretName: nginx-certs
+    secretName: baby-cert
   rules:
   - host: baby.burntsheep.com
     http:
@@ -14,8 +16,4 @@ spec:
       - path: /
         backend:
           serviceName: baby
-          servicePort: 80
-      - path: /.well-known
-        backend:
-          serviceName: letsencrypt
           servicePort: 80
