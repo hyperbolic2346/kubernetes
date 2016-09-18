@@ -1,0 +1,53 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: plex
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: plex
+    spec:
+      nodeSelector:
+        fileserv: "true"
+      containers:
+      - name: plex
+        image: linuxserver/plex
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 32400
+          name: plex
+        - containerPort: 32400
+          name: plex-udp
+          protocol: UDP
+        - containerPort: 32469
+          name: plex2
+        - containerPort: 32469
+          name: plex2-udp
+          protocol: UDP
+        - containerPort: 5353
+          name: plex3-udp
+          protocol: UDP
+        - containerPort: 1900
+          name: plex4-udp
+          protocol: UDP
+        env:
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+        - name: VERSION
+          value: "latest"
+        volumeMounts:
+        - name: plex
+          mountPath: /config
+        - name: plex-media
+          mountPath: /data
+      volumes:
+      - name: plex-media
+        hostPath:
+          path: /mnt/fileserv/Library/Videos
+      - name: plex
+        hostPath:
+          path: /mnt/fileserv/kubernetes/plex

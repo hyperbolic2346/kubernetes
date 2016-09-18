@@ -2,11 +2,13 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: jenkins
+  annotations:
+    kubernetes.io/tls-acme: "true"
 spec:
   tls:
   - hosts:
     - jenkins.burntsheep.com
-    secretName: nginx-certs
+    secretName: jenkins-cert
   rules:
   - host: jenkins.burntsheep.com
     http:
@@ -14,8 +16,4 @@ spec:
       - path: /
         backend:
           serviceName: jenkins
-          servicePort: 80
-      - path: /.well-known
-        backend:
-          serviceName: letsencrypt
           servicePort: 80

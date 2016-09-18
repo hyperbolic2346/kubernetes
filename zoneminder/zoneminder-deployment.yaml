@@ -1,0 +1,40 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: zoneminder
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: zoneminder
+    spec:
+      containers:
+      - name: zoneminder
+        image: 10.0.1.14:5000/zoneminder
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 2
+        ports:
+        - containerPort: 80
+        env:
+        - name: TZ
+          value: "America/New_York"
+        volumeMounts:
+        - name: zoneminder-content
+          mountPath: /content
+        - name: zoneminder-config
+          mountPath: /config
+        - name: shm
+          mountPath: /dev/shm
+      volumes:
+      - name: shm
+        emptyDir:
+          medium: Memory
+      - name: zoneminder-content
+        persistentVolumeClaim:
+          claimName: zoneminder-content
+      - name: zoneminder-config
+        persistentVolumeClaim:
+          claimName: zoneminder-config

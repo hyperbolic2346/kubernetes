@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: motion
-        image: 10.0.1.19:5000/motion
+        image: 10.0.1.14:5000/motion
         resources:
           limits:
             cpu: 1

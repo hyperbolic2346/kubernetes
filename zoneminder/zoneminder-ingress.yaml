@@ -1,19 +1,19 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: kubedash
+  name: zoneminder
   annotations:
     kubernetes.io/tls-acme: "true"
 spec:
   tls:
   - hosts:
-    - kubedash.burntsheep.com
-    secretName: kubedash-cert
+    - zoneminder.burntsheep.com
+    secretName: zoneminder-cert
   rules:
-  - host: kubedash.burntsheep.com
+  - host: zoneminder.burntsheep.com
     http:
       paths:
       - path: /
         backend:
-          serviceName: kubedash
+          serviceName: zoneminder
           servicePort: 80

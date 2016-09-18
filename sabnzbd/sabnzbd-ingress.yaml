@@ -1,19 +1,19 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: kubedash
+  name: sabnzbd
   annotations:
     kubernetes.io/tls-acme: "true"
 spec:
   tls:
   - hosts:
-    - kubedash.burntsheep.com
-    secretName: kubedash-cert
+    - sabnzbd.burntsheep.com
+    secretName: sabnzbd-cert
   rules:
-  - host: kubedash.burntsheep.com
+  - host: sabnzbd.burntsheep.com
     http:
       paths:
       - path: /
         backend:
-          serviceName: kubedash
+          serviceName: sabnzbd
           servicePort: 80

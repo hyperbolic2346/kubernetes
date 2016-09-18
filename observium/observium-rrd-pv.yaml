@@ -1,0 +1,12 @@
+  apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    name: observium-rrd
+  spec:
+    capacity:
+      storage: 10Gi
+    accessModes:
+      - ReadWriteOnce
+    nfs:
+      path: /mnt/fileserv/kubernetes/observium/rrd
+      server: 10.0.1.14

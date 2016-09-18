@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: bf2
-        image: 10.0.1.19:5000/bf2
+        image: 10.0.1.14:5000/bf2
         resources:
           limits:
             cpu: 2

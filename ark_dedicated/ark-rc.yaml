@@ -18,11 +18,11 @@ spec:
     spec:
       containers:
       - name: ark
-        image: 10.0.1.19:5000/ark_dedicated
+        image: 10.0.1.14:5000/ark_dedicated
         resources:
           limits:
             cpu: 3
-            memory: 16Gi
+            memory: 12Gi
         volumeMounts:
         - name: ark-store
           mountPath: /ark

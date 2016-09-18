@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: gate
-        image: 10.0.1.19:5000/gate
+        image: 10.0.1.14:5000/gate
         resources:
           limits:
             cpu: 0.5

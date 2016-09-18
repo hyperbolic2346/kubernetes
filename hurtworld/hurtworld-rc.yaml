@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: hurtworld
-        image: 10.0.1.19:5000/hurtworld_dedicated
+        image: 10.0.1.14:5000/hurtworld
         resources:
           limits:
             cpu: 1

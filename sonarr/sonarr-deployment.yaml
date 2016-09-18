@@ -1,0 +1,41 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sonarr
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sonarr
+    spec:
+      nodeSelector:
+        fileserv: "true"
+      containers:
+      - name: sonarr
+        image: linuxserver/sonarr
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8989
+        env:
+        - name: PGID
+          value: "1000"
+        - name: PUID
+          value: "1000"
+        volumeMounts:
+        - name: sonarr
+          mountPath: /config
+        - name: sonarr-downloads
+          mountPath: /download
+        - name: sonarr-lib
+          mountPath: /mnt/fileserv/Library/Videos/TV
+      volumes:
+      - name: sonarr
+        hostPath:
+          path: /mnt/fileserv/kubernetes/sonarr
+      - name: sonarr-downloads
+        hostPath:
+          path: /mnt/fileserv/Library
+      - name: sonarr-lib
+        hostPath:
+          path: /mnt/fileserv/Library/Videos/TV

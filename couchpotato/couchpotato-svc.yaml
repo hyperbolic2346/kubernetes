@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: couchpotato
+  labels:
+    app: couchpotato
+    kubernetes.io/name: "couchpotato"
+spec:
+  selector:
+    app: couchpotato
+  ports:
+  - name: couchpotato
+    port: 80
+    targetPort: 5050

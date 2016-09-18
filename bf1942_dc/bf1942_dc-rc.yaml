@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: bf1942-dc
-        image: 10.0.1.19:5000/bf1942_dc
+        image: 10.0.1.14:5000/bf1942_dc
         resources:
           limits:
             cpu: 2

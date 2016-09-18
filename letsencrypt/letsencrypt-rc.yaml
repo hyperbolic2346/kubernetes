@@ -18,7 +18,8 @@ spec:
     spec:
       containers:
       - name: letsencrypt
-        image: 10.0.1.19:5000/letsencrypt
+10.0.1.14:5000.
+        image:  ployst/letsencrypt
         resources:
           limits:
             cpu: 0.1

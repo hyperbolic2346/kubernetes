@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: observium
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: observium
+    spec:
+      containers:
+      - name: observium
+        image: yelp/observium
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+        env:
+        - name: WORKERS
+          value: "4"
+        - name: USE_WEATHERMAP
+          value: "true"
+        volumeMounts:
+        - name: observium-html
+          mountPath: /opt/observium/html
+        - name: observium-config
+          mountPath: /config
+        - name: observium-logs
+          mountPath: /opt/observium/logs
+        - name: observium-rrd
+          mountPath: /opt/observium/rrd
+      volumes:
+      - name: observium-html
+        persistentVolumeClaim:
+          claimName: observium-html
+      - name: observium-config
+        persistentVolumeClaim:
+          claimName: observium-config
+      - name: observium-logs
+        persistentVolumeClaim:
+          claimName: observium-logs
+      - name: observium-rrd
+        persistentVolumeClaim:
+          claimName: observium-rrd

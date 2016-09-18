@@ -3,11 +3,13 @@ kind: Ingress
 metadata:
   name: gate
   namespace: default
+  annotations:
+    kubernetes.io/tls-acme: "true"
 spec:
   tls:
   - hosts:
     - gate.burntsheep.com
-    secretName: nginx-certs
+    secretName: gate-cert
   rules:
   - host: gate.burntsheep.com
     http:
@@ -15,8 +17,4 @@ spec:
       - path: /
         backend:
           serviceName: gate
-          servicePort: 80
-      - path: /.well-known
-        backend:
-          serviceName: letsencrypt
           servicePort: 80

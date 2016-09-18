@@ -1,19 +1,19 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: kubedash
+  name: observium
   annotations:
     kubernetes.io/tls-acme: "true"
 spec:
   tls:
   - hosts:
-    - kubedash.burntsheep.com
-    secretName: kubedash-cert
+    - observium.burntsheep.com
+    secretName: observium-cert
   rules:
-  - host: kubedash.burntsheep.com
+  - host: observium.burntsheep.com
     http:
       paths:
       - path: /
         backend:
-          serviceName: kubedash
+          serviceName: observium
           servicePort: 80

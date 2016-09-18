@@ -1,0 +1,46 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: couchpotato
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: couchpotato
+    spec:
+      nodeSelector:
+        fileserv: "true"
+      containers:
+      - name: couchpotato
+        image: linuxserver/couchpotato
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5050
+        env:
+        - name: PGID
+          value: "1000"
+        - name: PUID
+          value: "1000"
+        volumeMounts:
+        - name: couchpotato
+          mountPath: /config
+        - name: localtime
+          mountPath: /etc/localtime
+        - name: couchpotato-downloads
+          mountPath: /downloads
+        - name: couchpotato-movies
+          mountPath: /movies
+      volumes:
+      - name: couchpotato
+        hostPath:
+          path: /mnt/fileserv/kubernetes/couchpotato
+      - name: couchpotato-downloads
+        hostPath:
+          path: /mnt/fileserv/Library/Videos/incoming_movies
+      - name: couchpotato-movies
+        hostPath:
+          path: /mnt/fileserv/Library/Videos/Movies
+      - name: localtime
+        hostPath:
+          path: /etc/localtime

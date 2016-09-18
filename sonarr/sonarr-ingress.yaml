@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: sonarr
+  annotations:
+    kubernetes.io/tls-acme: "true"
+spec:
+  tls:
+  - secretName: sonarr-cert
+    hosts:
+    - sonarr.burntsheep.com
+    - sonaar.burntsheep.com
+  rules:
+  - host: sonarr.burntsheep.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: sonarr
+          servicePort: 80
+  - host: sonaar.burntsheep.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: sonarr
+          servicePort: 80

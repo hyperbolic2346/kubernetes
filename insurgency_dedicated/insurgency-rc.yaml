@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: hlstatsx-scr
-        image: 10.0.1.19:5000/hlstatsx_scripts
+        image: 10.0.1.14:5000/hlstatsx_scripts
         resources:
           limits:
             cpu: 0.5
@@ -28,14 +28,14 @@ spec:
           protocol: UDP
         imagePullPolicy: Always
       - name: insurgency
-        image: 10.0.1.19:5000/insurgency_dedicated
+        image: 10.0.1.14:5000/insurgency_dedicated
         resources:
           limits:
             cpu: 3
             memory: 2Gi
         volumeMounts:
         - name: insurgency-store
-          mountPath: /srv/insurgency_data
+          mountPath: /insurgency
         ports:
         - containerPort: 27015
           name: insurg-main

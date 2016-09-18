@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: observium
+  labels:
+    app: observium
+    kubernetes.io/name: "observium"
+spec:
+  selector:
+    app: observium
+  ports:
+  - name: observium
+    port: 80
+    targetPort: 8000

@@ -1,0 +1,12 @@
+  apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    name: zoneminder-content
+  spec:
+    capacity:
+      storage: 1Ti
+    accessModes:
+      - ReadWriteOnce
+    nfs:
+      path: /mnt/fileserv/security_camera
+      server: 10.0.1.14
