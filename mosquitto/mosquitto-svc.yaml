@@ -10,5 +10,8 @@ spec:
     app: mosquitto
   ports:
   - name: mosquitto
-    port: 8883
+    port: 1883
+  - name: mosquitto-web
+    port: 80
+    targetPort: 9001
   externalIPs: ["10.0.1.19"]

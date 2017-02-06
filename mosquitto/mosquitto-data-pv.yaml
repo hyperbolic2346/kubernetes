@@ -1,0 +1,12 @@
+  apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    name: mosquitto-data
+  spec:
+    capacity:
+      storage: 50Mi
+    accessModes:
+      - ReadWriteOnce
+    nfs:
+      path: /mnt/fileserv/kubernetes/mosquitto/data
+      server: 10.0.1.14

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hlstatsx-scr
+  labels:
+    app: hlstatsx-scr
+    kubernetes.io/name: "hlstatsx-scr"
+spec:
+  selector:
+    app: insurgency
+  ports:
+  - name: hlstatsx-scr
+    port: 27500
+    protocol: UDP

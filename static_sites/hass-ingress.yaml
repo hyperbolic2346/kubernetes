@@ -1,19 +1,19 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: netdata
+  name: hass
   annotations:
     kubernetes.io/tls-acme: "true"
 spec:
   tls:
   - hosts:
-    - mosquitto.burntsheep.com
-    secretName: mosquitto-cert
+    - hass.burntsheep.com
+    secretName: hass-cert
   rules:
-  - host: mosquitto.burntsheep.com
+  - host: hass.burntsheep.com
     http:
       paths:
       - path: /
         backend:
-          serviceName: mosquitto
+          serviceName: hass
           servicePort: 80

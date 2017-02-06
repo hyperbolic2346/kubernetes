@@ -1,12 +1,12 @@
   apiVersion: v1
   kind: PersistentVolume
   metadata:
-    name: mosquitto
+    name: mosquitto-log
   spec:
     capacity:
-      storage: 15Mi
+      storage: 25Mi
     accessModes:
       - ReadWriteOnce
     nfs:
-      path: /mnt/fileserv/kubernetes/mosquitto
+      path: /mnt/fileserv/kubernetes/mosquitto/log
       server: 10.0.1.14

@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: netdata
+  name: mosquitto
   annotations:
     kubernetes.io/tls-acme: "true"
 spec:

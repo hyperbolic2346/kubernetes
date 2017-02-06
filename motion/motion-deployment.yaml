@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: motion
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: motion
+    spec:
+      containers:
+      - name: motion
+        image: 10.0.1.14:5000/motion:3
+        resources:
+          limits:
+            cpu: 1
+            memory: 2Gi
+        ports:
+        - containerPort: 9081
+          name: motion
+        volumeMounts:
+        - name: security-store
+          mountPath: /fileserv/security_camera
+      volumes:
+      - name: security-store
+        persistentVolumeClaim:
+          claimName: security-camera
