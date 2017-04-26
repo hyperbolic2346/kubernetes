@@ -2,14 +2,14 @@
     "kind": "Service",
     "apiVersion": "v1",
     "metadata": {
-        "name": "couchpotato"
+        "name": "sonarr"
     },
     "spec": {
         "ports": [
             {
                 "protocol": "TCP",
                 "port": 80,
-                "targetPort": 5050
+                "targetPort": 8989
             }
         ]
     }
@@ -19,7 +19,7 @@
     "kind": "Endpoints",
     "apiVersion": "v1",
     "metadata": {
-        "name": "couchpotato"
+        "name": "sonarr"
     },
     "subsets": [
         {
@@ -27,7 +27,7 @@
                 { "ip": "10.0.1.14" }
             ],
             "ports": [
-                { "port": 5050 }
+                { "port": 8989 }
             ]
         }
     ]

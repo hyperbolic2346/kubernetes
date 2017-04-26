@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    component: flower
+  name: flower
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: taskQueue
+        component: flower
+    spec:
+      containers:
+      - image: 10.0.1.14:5000/flower
+        name: flower
+        resources:
+          limits:
+            cpu: 100m
+        env:
+        - name: FLOWER_OAUTH2_KEY
+          value: 811357267326-5904mosijg3jjsbehtnblqrue33b1irg.apps.googleusercontent.com
+        - name: FLOWER_OAUTH2_SECRET
+          value: 2xypEg-_ijzgyDkTYex4twyA
+        - name: FLOWER_OAUTH2_REDIRECT_URI
+          value: https://flower.burntsheep.com/login

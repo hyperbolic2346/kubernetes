@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    component: celery
+  name: celery-controller
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: taskQueue
+        component: celery
+    spec:
+      containers:
+      - image: 10.0.1.14:5000/celery_motion:5
+        name: celery-motion
+        ports:
+        - containerPort: 5672
+        resources:
+          limits:
+            cpu: 2000m
+          requests:
+            cpu: 1000m
+        volumeMounts:
+        - name: security-camera-storage
+          mountPath: /fileserv/security_camera
+        imagePullPolicy: Always
+      volumes:
+      - name: security-camera-storage
+        persistentVolumeClaim:
+          claimName: security-camera
+

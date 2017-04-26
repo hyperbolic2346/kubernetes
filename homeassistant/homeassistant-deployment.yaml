@@ -1,0 +1,67 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: homeassistant
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: homeassistant
+    spec:
+      nodeSelector:
+        zwave: "true"
+      # hostNetwork: true
+      containers:
+      - name: homeassistant
+        image: homeassistant/home-assistant
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: homeassistant
+          mountPath: /config
+        - name: localtime
+          mountPath: /etc/localtime
+        - name: dev-zwave
+          mountPath: /dev/usbzwave
+        - name: dev-insteon
+          mountPath: /dev/usbinsteon
+        securityContext:
+          privileged: true
+      - name: appdaemon
+        image: mezz64/appdaemon
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: appdaemon
+          mountPath: /conf
+        - name: localtime
+          mountPath: /etc/localtime
+      #- name: hadashboard
+      #  image: marijngiesen/hadashboard
+      #  imagePullPolicy: Always
+      #  volumeMounts:
+      #  - name: hadashboard
+      #    mountPath: /app/dashboards
+      #  - name: hapush
+      #    mountPath: /app/hapush
+      volumes:
+      - name: homeassistant
+        persistentVolumeClaim:
+          claimName: homeassistant
+      - name: appdaemon
+        persistentVolumeClaim:
+          claimName: homeassistant
+      #- name: hadashboard
+      #  persistentVolumeClaim:
+      #    claimName: hadashboard
+      #- name: hapush
+      #  persistentVolumeClaim:
+      #    claimName: hapush
+      - name: localtime
+        hostPath:
+          path: /etc/localtime
+      - name: dev-zwave
+        hostPath:
+          path: /dev/usbzwave
+      - name: dev-insteon
+        hostPath:
+          path: /dev/usbinsteon

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: homeassistant
+  labels:
+    app: homeasistant
+    kubernetes.io/name: "homeassistant"
+spec:
+  selector:
+    app: homeassistant
+  ports:
+  - name: homeassistant
+    port: 80
+    targetPort: 8123

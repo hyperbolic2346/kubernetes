@@ -1,0 +1,12 @@
+  apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    name: homeassistant
+  spec:
+    capacity:
+      storage: 100Gi
+    accessModes:
+      - ReadWriteMany
+    nfs:
+      path: /mnt/fileserv/kubernetes/homeassistant
+      server: 10.0.1.14

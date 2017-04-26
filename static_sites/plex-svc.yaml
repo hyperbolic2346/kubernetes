@@ -2,14 +2,14 @@
     "kind": "Service",
     "apiVersion": "v1",
     "metadata": {
-        "name": "sonaar"
+        "name": "plex"
     },
     "spec": {
         "ports": [
             {
                 "protocol": "TCP",
-                "port": 80,
-                "targetPort": 8989
+                "port": 32400,
+                "targetPort": 32400
             }
         ]
     }
@@ -19,15 +19,15 @@
     "kind": "Endpoints",
     "apiVersion": "v1",
     "metadata": {
-        "name": "sonaar"
+        "name": "plex"
     },
     "subsets": [
         {
             "addresses": [
-                { "ip": "10.0.1.38" }
+                { "ip": "10.0.1.14" }
             ],
             "ports": [
-                { "port": 8989 }
+                { "port": 32400 }
             ]
         }
     ]
